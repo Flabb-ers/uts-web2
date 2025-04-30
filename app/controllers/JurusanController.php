@@ -1,5 +1,7 @@
 <?php
+require_once __DIR__ . '/../helpers/url.php';
 require_once __DIR__ . '/../models/Jurusan.php';
+session_start();
 
 class JurusanController
 {
@@ -23,7 +25,9 @@ class JurusanController
                 'nama_jurusan' => $_POST['nama_jurusan']
             ];
             $this->jurusan->addJurusan($data);
-            header('Location: /jurusan');
+
+            $_SESSION['success_message'] = 'Jurusan berhasil ditambahkan!';
+            header('Location:' . base_url('/jurusan'));
             exit;
         } else {
             $this->view('jurusan/create');
@@ -38,7 +42,8 @@ class JurusanController
                 'nama_jurusan' => $_POST['nama_jurusan']
             ];
             $this->jurusan->updateJurusan($data);
-            header('Location: /jurusan');
+            $_SESSION['success_message'] = 'Jurusan berhasil diupdate!';
+            header('Location:' . base_url('/jurusan'));
             exit;
         } else {
             $jurusan = $this->jurusan->getJurusanById($id);
@@ -49,7 +54,8 @@ class JurusanController
     public function delete($id)
     {
         $this->jurusan->deleteJurusan($id);
-        header('Location: /jurusan');
+        $_SESSION['success_message'] = 'Jurusan berhasil dihapus!';
+            header('Location:' . base_url('/jurusan'));
         exit;
     }
 

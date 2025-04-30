@@ -25,8 +25,8 @@ include __DIR__ . '/../templates/sidebar.php';
             <?php endforeach; ?>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Simpan</button>
-    <a href="<?php echo base_url('/mahasiswa') ?>" class="btn btn-secondary">Kembali</a>
+    <button type="submit" class="btn btn-primary btn-sm rounded-3"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+    <a href="<?php echo base_url('/mahasiswa') ?>" class="btn btn-secondary btn-sm rounded-3"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
 </form>
 
 <?php include __DIR__ . '/../templates/footer.php'; ?>

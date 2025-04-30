@@ -11,6 +11,7 @@
   <title>Dashboard Template · Bootstrap v5.0</title>
 
   <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/9ed354e703.js" crossorigin="anonymous"></script>
 
 
   <style>
