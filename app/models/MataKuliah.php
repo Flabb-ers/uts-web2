@@ -20,6 +20,7 @@ class MataKuliah
     {
         $this->db->query("SELECT * FROM mata_kuliah WHERE id = :id");
         $this->db->bind(':id', $id);
+        // var_dump($this->db->single());
         return $this->db->single();
     }
 

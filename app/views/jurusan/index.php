@@ -32,7 +32,7 @@ include __DIR__ . '/../templates/sidebar.php';
             </tr>
         </thead>
         <tbody>
-            <?php if (isset($jurusans) && is_array($jurusans)): ?>
+            <?php if (!empty($jurusans)): ?>
                 <?php $no = 1 ?>
                 <?php foreach ($jurusans as $jurusan): ?>
                     <tr>
@@ -51,6 +51,7 @@ include __DIR__ . '/../templates/sidebar.php';
                     <td colspan="3" class="text-center">Belum ada data jurusan.</td>
                 </tr>
             <?php endif; ?>
+
         </tbody>
     </table>
 </div>

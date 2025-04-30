@@ -9,12 +9,15 @@ class App
     {
         $url = $this->parseUrl();
     
-        if (!empty($url) && file_exists(__DIR__ . '/../app/controllers/' . ucfirst($url[0]) . 'Controller.php')) {
-            $this->controller = ucfirst($url[0]) . 'Controller';
-            unset($url[0]);
+        if (!empty($url)) {
+            $controllerName = $this->convertToControllerName($url[0]);
+            
+            if (file_exists(__DIR__ . '/../app/controllers/' . $controllerName . '.php')) {
+                $this->controller = $controllerName;
+                unset($url[0]);
+            }
         }
         
-    
         require_once __DIR__ . '/../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
     
@@ -22,12 +25,20 @@ class App
             $this->method = $url[1];
             unset($url[1]); 
         }
-    
+
         $this->params = $url ? array_values($url) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
     
-
+    private function convertToControllerName($urlSegment)
+    {
+        $words = str_replace(['-', '_'], ' ', $urlSegment);
+        
+        $pascalCase = ucwords($words);
+        $pascalCase = str_replace(' ', '', $pascalCase);
+        return $pascalCase . 'Controller';
+    }
+    
     public function parseUrl()
     {
         if (isset($_GET['url'])) {
@@ -36,4 +47,3 @@ class App
         return [];
     }
 }
-

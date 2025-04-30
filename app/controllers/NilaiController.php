@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once __DIR__ . '/../helpers/url.php';
 require_once __DIR__ . '/../models/Nilai.php';
 require_once __DIR__ . '/../models/Mahasiswa.php';
 require_once __DIR__ . '/../models/MataKuliah.php';
@@ -31,7 +33,8 @@ class NilaiController
                 'nilai' => $_POST['nilai']
             ];
             $this->nilai->addNilai($data);
-            header('Location: /nilai');
+            $_SESSION['success_message'] = 'Nilai berhasil ditambahkan!';
+            header('Location:' . base_url('/nilai'));
             exit;
         } else {
             $mahasiswas = $this->mahasiswa->getAllMahasiswa();
@@ -53,7 +56,8 @@ class NilaiController
                 'nilai' => $_POST['nilai']
             ];
             $this->nilai->updateNilai($data);
-            header('Location: /nilai');
+            $_SESSION['success_message'] = 'Mata Kuliah berhasil diupdate!';
+            header('Location:' . base_url('/nilai'));
             exit;
         } else {
             $nilai = $this->nilai->getNilaiById($id);
@@ -70,7 +74,8 @@ class NilaiController
     public function delete($id)
     {
         $this->nilai->deleteNilai($id);
-        header('Location: /nilai');
+        $_SESSION['success_message'] = 'Mata Kuliah berhasil dihapus!';
+            header('Location:' . base_url('/nilai'));
         exit;
     }
 

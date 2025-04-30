@@ -5,8 +5,8 @@ include __DIR__ . '/../templates/navbar.php';
 include __DIR__ . '/../templates/sidebar.php';
 ?>
 
-<h2 class="my-3">Data Mahasiswa</h2>
-<a href="<?= base_url('mahasiswa/create') ?>" class="btn btn-success mb-3 btn-sm rounded-3"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>
+<h2 class="my-3">Data Nilai</h2>
+<a href="<?= base_url('nilai/create') ?>" class="btn btn-success mb-3 btn-sm rounded-3"><i class="fa fa-plus"></i> Tambah Nilai</a>
 
 <?php if (isset($_SESSION['success_message'])): ?>
     <div class="toast-container position-fixed top-0 end-0 p-3" style="margin-top: 50px; z-index: 1050;">
@@ -27,33 +27,36 @@ include __DIR__ . '/../templates/sidebar.php';
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nama</th>
-                <th scope="col">NIM</th>
-                <th scope="col">Jurusan</th>
+                <th scope="col">Nama Mahasiswa</th>
+                <th scope="col">Mata Kuliah</th>
+                <th scope="col">Nilai</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($mahasiswas)): ?>
+            <?php if (!empty($nilais)): ?>
                 <?php $no = 1 ?>
-                <?php foreach ($mahasiswas as $mahasiswa): ?>
+                <?php foreach ($nilais as $nilai): ?>
                     <tr>
                         <td><?= $no++ ?></td>
-                        <td><?= htmlspecialchars($mahasiswa->nama); ?></td>
-                        <td><?= htmlspecialchars($mahasiswa->nim); ?></td>
-                        <td><?= htmlspecialchars($mahasiswa->jurusan_nama); ?></td>
+                        <td><?= htmlspecialchars($nilai->nama_mahasiswa); ?></td>
+                        <td><?= htmlspecialchars($nilai->nama_mk); ?></td>
+                        <td><?= htmlspecialchars($nilai->nilai); ?></td>
                         <td>
-                            <a href="<?= base_url('/mahasiswa/edit/' . $mahasiswa->id) ?>" class="btn btn-warning btn-sm rounded-3"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="<?= base_url('/mahasiswa/delete/' . $mahasiswa->id) ?>" class="btn btn-danger btn-sm rounded-3" onclick="return confirm('YYakin ingin menghapus mahasiswa ini? Semua data terkait, seperti nilai, juga akan ikut terhapus.')"><i class="fa fa-trash"></i> Hapus</a>
+                            <a href="<?= base_url('nilai/edit/' . $nilai->id) ?>" class="btn btn-warning btn-sm rounded-3">
+                                <i class="fa fa-pencil"></i> Edit
+                            </a>
+                            <a href="<?= base_url('nilai/delete/' . $nilai->id) ?>" class="btn btn-danger btn-sm rounded-3" onclick="return confirm('Yakin ingin menghapus data nilai ini?')">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="6" class="text-center">Tidak ada data mahasiswa.</td>
+                    <td colspan="5" class="text-center">Belum ada data nilai.</td>
                 </tr>
             <?php endif; ?>
-
         </tbody>
     </table>
 </div>

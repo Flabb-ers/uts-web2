@@ -1,5 +1,7 @@
 <?php
+session_start();
 require_once __DIR__ . '/../models/MataKuliah.php';
+require_once __DIR__ . '/../helpers/url.php';
 
 class MataKuliahController
 {
@@ -24,7 +26,8 @@ class MataKuliahController
                 'sks' => $_POST['sks']
             ];
             $this->mk->addMataKuliah($data);
-            header('Location: /mata_kuliah');
+            $_SESSION['success_message'] = 'Mata Kuliah berhasil ditambahkan!';
+            header('Location:' . base_url('/mata-kuliah'));
             exit;
         } else {
             $this->view('mata_kuliah/create');
@@ -40,18 +43,20 @@ class MataKuliahController
                 'sks' => $_POST['sks']
             ];
             $this->mk->updateMataKuliah($data);
-            header('Location: /mata_kuliah');
+            $_SESSION['success_message'] = 'Mata Kuliah berhasil diupdate!';
+            header('Location:' . base_url('/mata-kuliah'));
             exit;
         } else {
             $mataKuliah = $this->mk->getMataKuliahById($id);
-            $this->view('mata_kuliah/edit', ['mata_kuliah' => $mataKuliah]);
+            $this->view('mata_kuliah/edit', ['mataKuliah' => $mataKuliah]);
         }
     }
 
     public function delete($id)
     {
         $this->mk->deleteMataKuliah($id);
-        header('Location: /mata_kuliah');
+        $_SESSION['success_message'] = 'Mata Kuliah berhasil dihapus!';
+            header('Location:' . base_url('/mata-kuliah'));
         exit;
     }
 

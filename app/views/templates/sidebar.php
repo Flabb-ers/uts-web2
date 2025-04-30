@@ -16,13 +16,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('/mata-kuliah')?>">
+          <a class="nav-link <?= strpos($_SERVER['REQUEST_URI'], '/mata-kuliah') !== false ? 'active' : '' ?>" href="<?= base_url('/mata-kuliah') ?>">
               <i class="fa fa-book"></i> 
               Mata Kuliah
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('/nilai')?>">
+          <a class="nav-link <?= strpos($_SERVER['REQUEST_URI'], needle: '/nilai') !== false ? 'active' : '' ?>" href="<?= base_url('/nilai') ?>">
             <i class="fa-solid fa-chart-simple"></i>
               Nilai
             </a>
